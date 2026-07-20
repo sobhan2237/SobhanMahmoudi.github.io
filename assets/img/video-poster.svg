@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" fill="#0c0e11"/>
+  <rect width="640" height="360" fill="url(#g)" opacity="0.5"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e0293f" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#39d67e" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <circle cx="320" cy="180" r="34" fill="none" stroke="#e0293f" stroke-width="2"/>
+  <polygon points="310,164 310,196 338,180" fill="#e0293f"/>
+  <text x="320" y="250" text-anchor="middle" font-family="monospace" font-size="13" fill="#7c8590">intro transmission</text>
+</svg>

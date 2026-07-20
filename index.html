@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sobhan Mahmmoodi — Cybersecurity Researcher</title>
+<meta name="description" content="Sobhan Mahmoudi — cybersecurity researcher. A living, camera-driven résumé: hand gestures, facial tracking, WebGL particles.">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ BOOT / TERMINAL SPLASH ============ -->
+<div id="boot-screen" aria-hidden="true">
+  <pre id="boot-log"></pre>
+  <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+</div>
+
+<!-- ============ WEBGL PARTICLE BACKDROP ============ -->
+<canvas id="scene"></canvas>
+<div id="scanlines"></div>
+<div id="noise"></div>
+
+<!-- ============ TOP BAR ============ -->
+<header id="topbar">
+  <div class="brand">
+    <span class="brand-glyph">&gt;_</span>
+    <span class="brand-name" data-i18n="brand">S. MAHMOODI</span>
+  </div>
+
+  <nav id="primary-nav" aria-label="Sections">
+    <a href="#about" data-i18n="nav.about">whoami</a>
+    <a href="#skills" data-i18n="nav.skills">skills</a>
+    <a href="#experience" data-i18n="nav.experience">log</a>
+    <a href="#research" data-i18n="nav.research">research</a>
+    <a href="#resume" data-i18n="nav.resume">resume</a>
+    <a href="#contact" data-i18n="nav.contact">connect</a>
+  </nav>
+
+  <div class="topbar-controls">
+    <button id="vision-toggle" class="pill-btn" type="button" aria-pressed="false">
+      <span class="dot"></span>
+      <span data-i18n="ctrl.vision">enable camera control</span>
+    </button>
+    <button id="lang-toggle" class="pill-btn ghost" type="button">
+      <span id="lang-toggle-label">فا</span>
+    </button>
+    <button id="menu-toggle" class="icon-btn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ GESTURE / VISION HUD ============ -->
+<div id="vision-hud" hidden>
+  <video id="webcam" autoplay playsinline muted></video>
+  <canvas id="hud-canvas"></canvas>
+  <div id="cursor-ring"></div>
+  <div id="vision-status">
+    <div class="vs-row"><span class="vs-key" data-i18n="hud.status">status</span><span class="vs-val" id="vs-status">—</span></div>
+    <div class="vs-row"><span class="vs-key" data-i18n="hud.gesture">gesture</span><span class="vs-val" id="vs-gesture">—</span></div>
+    <div class="vs-row"><span class="vs-key" data-i18n="hud.face">face_lock</span><span class="vs-val" id="vs-face">—</span></div>
+  </div>
+  <button id="vision-close" class="icon-btn" aria-label="Close camera control">✕</button>
+  <button id="vision-help" class="icon-btn" aria-label="Gesture guide">?</button>
+</div>
+
+<!-- ============ MAIN CONTENT ============ -->
+<main id="content">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="eyebrow mono" data-i18n="hero.eyebrow">// identity verified</p>
+      <h1 class="glitch" data-text="SOBHAN MAHMOUDI" data-i18n="hero.name">SOBHAN MAHMOUDI</h1>
+      <p class="hero-role mono" data-i18n="hero.role">Cybersecurity Researcher &amp; Offensive Security Engineer</p>
+      <p class="hero-desc" data-i18n="hero.desc">
+       Sometimes growth starts with rm -rf , not mkdir .
+        This page watches back — raise a hand, it's listening. 
+      </p>
+      <div class="hero-actions">
+        <button class="btn primary" id="hero-vision-btn" data-i18n="hero.cta1">activate live control</button>
+        <a class="btn ghost" href="#about" data-i18n="hero.cta2">scroll — or wave</a>
+      </div>
+      <div class="hero-meta mono">
+        <span data-i18n="hero.meta1">based IR</span>
+        <span class="sep">·</span>
+        <span data-i18n="hero.meta2">available for consulting &amp; research</span>
+      </div>
+    </div>
+    <div class="hero-hint mono" id="gesture-hint">
+      <button type="button" id="gesture-hint-btn" data-i18n="hero.hint">pinch to select · open palm to scroll</button>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="section-head">
+      <span class="tag mono" data-i18n="about.tag">01 // whoami</span>
+      <h2 data-i18n="about.title">A shorter way to say "I look for what shouldn't be there."</h2>
+    </div>
+    <div class="about-grid">
+      <p class="about-text" data-i18n="about.body">
+Hi, I'm Sobhan Mahmoudi, a cybersecurity researcher focused on offensive security, web application security, and applied threat intelligence. I’m passionate about understanding how systems break, discovering hidden vulnerabilities, and analyzing the techniques attackers use to compromise trusted environments.
+My work focuses on penetration testing, vulnerability research, reconnaissance, malware analysis, and security automation. I have hands-on experience with security assessment methodologies, web security testing, network analysis, SOC concepts, and threat investigation. I enjoy exploring attack surfaces, identifying security weaknesses, and building practical approaches to make security assessments more efficient and effective.
+Beyond finding vulnerabilities, I’m interested in understanding the full lifecycle of attacks — from initial reconnaissance and exploitation to detection and response. My goal is to continuously improve my skills across offensive security and defensive technologies while contributing to a more secure digital ecosystem.
+This website reflects the same mindset I bring to security research: trust should be earned through verification, not assumptions. Every camera frame is processed locally on-device, nothing is uploaded, and every interaction is designed around privacy, transparency, and security by design.
+
+      </p>
+      <ul class="about-facts mono">
+        <li><span data-i18n="about.f1k">focus</span><span data-i18n="about.f1v">offensive security · threat intel</span></li>
+        <li><span data-i18n="about.f2k">based</span><span data-i18n="about.f2v">Tehran, Iran</span></li>
+        <li><span data-i18n="about.f3k">languages</span><span data-i18n="about.f3v">Persian · English</span></li>
+        <li><span data-i18n="about.f4k">status</span><span id="about-status" data-i18n="about.f4v">open to select engagements</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="section-head">
+      <span class="tag mono" data-i18n="skills.tag">02 // capabilities</span>
+      <h2 data-i18n="skills.title">Toolset</h2>
+    </div>
+    <div class="skills-grid" id="skills-grid"><!-- populated by js/content.js --></div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="section-head">
+      <span class="tag mono" data-i18n="exp.tag">03 // system log</span>
+      <h2 data-i18n="exp.title">Experience</h2>
+    </div>
+    <div class="timeline" id="timeline"><!-- populated by js/content.js --></div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research" class="section">
+    <div class="section-head">
+      <span class="tag mono" data-i18n="research.tag">04 // case files</span>
+      <h2 data-i18n="research.title">Research &amp; Writeups</h2>
+    </div>
+    <div class="research-grid" id="research-grid"><!-- populated by js/content.js --></div>
+  </section>
+
+  <!-- RESUME DOWNLOAD -->
+  <section id="resume" class="section">
+    <div class="section-head">
+      <span class="tag mono" data-i18n="resume.tag">05 // export</span>
+      <h2 data-i18n="resume.title">Download the résumé</h2>
+    </div>
+    <div class="resume-grid">
+      <p class="resume-text" data-i18n="resume.body">
+        Same content, two languages, one PDF each — pick whichever reads better for
+        the person on the other end.
+      </p>
+      <div class="resume-actions">
+        <a class="btn primary resume-link" id="resume-en" href="assets/resume/sobhan-mahmoudi-en.pdf" download>
+          <span data-i18n="resume.en">English (PDF)</span>
+        </a>
+        <a class="btn ghost resume-link" id="resume-fa" href="assets/resume/sobhan-mahmoudi-fa.pdf" download>
+          <span data-i18n="resume.fa">فارسی (PDF)</span>
+        </a>
+      </div>
+      <p class="resume-note mono" id="resume-note" data-i18n="resume.note" hidden>
+        Add your files at <code>assets/resume/sobhan-mahmoudi-en.pdf</code> and <code>assets/resume/sobhan-mahmoudi-fa.pdf</code> — these buttons pick them up automatically.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="section-head">
+      <span class="tag mono" data-i18n="contact.tag">06 // handshake</span>
+      <h2 data-i18n="contact.title">Open a channel</h2>
+    </div>
+    <div class="contact-grid">
+      <p class="contact-text" data-i18n="contact.body">
+        For collaboration, disclosure coordination, or a proper conversation — reach out on
+        an encrypted channel below. PGP key available on request.
+      </p>
+      <div class="contact-links mono" id="contact-links"><!-- populated by js/content.js --></div>
+    </div>
+  </section>
+
+  <footer id="site-footer" class="mono">
+    <span data-i18n="footer.line">© <span id="year"></span> Sobhan Mahmoudi — built with WebGL, on-device computer vision, and healthy paranoia.</span>
+  </footer>
+</main>
+
+<!-- ============ MOBILE NAV DRAWER ============ -->
+<div id="mobile-nav" hidden>
+  <a href="#about" data-i18n="nav.about">whoami</a>
+  <a href="#skills" data-i18n="nav.skills">skills</a>
+  <a href="#experience" data-i18n="nav.experience">log</a>
+  <a href="#research" data-i18n="nav.research">research</a>
+  <a href="#resume" data-i18n="nav.resume">résumé</a>
+  <a href="#contact" data-i18n="nav.contact">connect</a>
+</div>
+
+<!-- ============ INTRO VIDEO POPUP (fires 5s after load) ============ -->
+<div id="video-popup" class="popup-overlay" hidden>
+  <div class="popup-box">
+    <button id="popup-close" class="icon-btn" aria-label="Close">✕</button>
+    <p class="eyebrow mono" data-i18n="popup.eyebrow">// incoming transmission</p>
+    <h3 data-i18n="popup.title"></h3>
+    <div class="popup-video-wrap">
+      <video id="popup-video" playsinline controls poster="">
+        <source src="assets/video/intro.mp4" 
+      </video>
+      <div id="popup-video-fallback" class="popup-video-fallback">
+        <p data-i18n="popup.fallback"><code></code></p>
+      </div>
+    </div>
+    <button class="btn primary" id="popup-dismiss" data-i18n="popup.dismiss">got it</button>
+  </div>
+</div>
+
+
+<!-- ============ GESTURE HOW-TO GUIDE ============ -->
+<div id="gesture-guide" class="popup-overlay" hidden>
+  <div class="popup-box guide-box">
+    <button id="guide-close" class="icon-btn" aria-label="Close">✕</button>
+    <p class="eyebrow mono" data-i18n="hero.eyebrow" style="opacity:.6">// input methods</p>
+    <h3 data-i18n="guide.title">How to drive this page with your hand</h3>
+    <p class="guide-intro" data-i18n="guide.intro">Once the camera is on, keep one hand loosely in frame. Nothing is recorded or uploaded — all tracking runs locally in your browser.</p>
+    <ul class="guide-list">
+      <li><span class="guide-icon mono">01</span><div><strong data-i18n="guide.g1t">Move your hand</strong><p data-i18n="guide.g1d">The red ring on screen follows your index fingertip — that's your cursor.</p></div></li>
+      <li><span class="guide-icon mono">02</span><div><strong data-i18n="guide.g2t">Pinch to click</strong><p data-i18n="guide.g2d">Touch thumb and index finger together over a button or link to click it. The ring turns green.</p></div></li>
+      <li><span class="guide-icon mono">03</span><div><strong data-i18n="guide.g3t">Pinch and drag up/down</strong><p data-i18n="guide.g3d">While pinched, move your hand up or down to scroll the page.</p></div></li>
+      <li><span class="guide-icon mono">04</span><div><strong data-i18n="guide.g4t">No pinch? Just hover</strong><p data-i18n="guide.g4d">Hold an open hand over a button for about a second and it clicks on its own.</p></div></li>
+      <li><span class="guide-icon mono">05</span><div><strong data-i18n="guide.g5t">Move your head</strong><p data-i18n="guide.g5d">The particle field behind the text drifts toward your face — no action needed.</p></div></li>
+    </ul>
+    <button class="btn primary" id="guide-dismiss" data-i18n="guide.dismiss">got it, let me try</button>
+  </div>
+</div>
+
+<!-- ============ WEBCAM CONSENT / ERROR TOAST ============ -->
+<div id="cam-toast" class="toast" hidden>
+  <span id="cam-toast-msg"></span>
+  <button id="cam-toast-close" class="icon-btn" aria-label="Dismiss">✕</button>
+</div>
+
+<script type="module" src="js/vision.js"></script>
+<script src="js/content.js"></script>
+<script type="module" src="js/particles.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
